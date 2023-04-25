@@ -105,9 +105,13 @@ em {
   --font-weight-regular: 400;
 
   --color-primary: ${COLORS.dark_purple};
+  --color-primary-fade: ${COLORS.dark_purple_fade};
   --color-secondary: ${COLORS.semi_dark_purple};
+  --color-secondary-fade: ${COLORS.semi_dark_purple_fade};
   --color-tertiary: ${COLORS.purple};
   --color-text: ${COLORS.yellow};
+  --color-text-fade: ${COLORS.yellow_fade};
+  --color-white-fade: ${COLORS.white_fade};
 }
 `;
 
