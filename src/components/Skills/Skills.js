@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import ConnectorBubble from "../ConnectorBubble";
+import ClickableWrapper from "../ClickableWrapper";
 import { hoverSupported } from "../hoverSupported";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
@@ -47,6 +48,11 @@ const Skill = styled(motion.a)`
   opacity: 0.8;
   transition: all 0.3s ease-in-out;
   border: 3px solid transparent;
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
 
   ${hoverSupported(css`
     &:hover {
@@ -147,7 +153,14 @@ function MySkill({ children, offsetX, offsetY, inView, ...props }) {
       initial={"hidden"}
       animate={inView ? "visible" : "hidden"}
     >
-      <Skill {...props}>{children}</Skill>
+      <ClickableWrapper
+        onClick={() => {
+          window.location = `${props.href}`;
+        }}
+        {...props}
+      >
+        <Skill {...props}>{children}</Skill>
+      </ClickableWrapper>
     </motion.div>
   );
 }

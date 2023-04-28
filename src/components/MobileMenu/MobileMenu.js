@@ -9,7 +9,6 @@ const BurgerWrapper = styled.div`
   gap: 6px;
   cursor: pointer;
   padding: 4px;
-  z-index: 4;
 `;
 
 const Bar = styled.div`

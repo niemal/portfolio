@@ -31,7 +31,6 @@ const BubbleOne = styled(motion.div)`
     inset 0px 0px 12px 0px hsla(57, 77%, 75%, 0.15);
   `
       : ""}
-  z-index: 2;
 
   @media ${QUERIES.exclusiveWidth3} {
     width: 50px;

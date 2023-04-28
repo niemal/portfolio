@@ -4,6 +4,7 @@ import { hoverSupported } from "../hoverSupported";
 import { useInterval } from "../useInterval";
 import { useState } from "react";
 import { QUERIES } from "../constants";
+import ClickableWrapper from "../ClickableWrapper/ClickableWrapper";
 
 const Wrapper = styled(motion.a)`
   position: absolute;
@@ -28,6 +29,11 @@ const Wrapper = styled(motion.a)`
       opacity: 1;
     }
   `)}
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
 
   @media ${QUERIES.laptop} {
     bottom: -10%;
@@ -79,21 +85,27 @@ function ScrollFromHero() {
   }, 500);
 
   return (
-    <Wrapper
+    <ClickableWrapper
       href={"#expertise"}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={fadeInOutVariants}
+      onClick={() => {
+        window.location = "/portfolio#expertise";
+      }}
     >
-      <InnerCircle>
-        <Image
-          floatImage={floatImage}
-          src={"/portfolio/double_down.svg"}
-          alt={"scroll down image"}
-        />
-      </InnerCircle>
-    </Wrapper>
+      <Wrapper
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={fadeInOutVariants}
+      >
+        <InnerCircle>
+          <Image
+            floatImage={floatImage}
+            src={"/portfolio/double_down.svg"}
+            alt={"scroll down image"}
+          />
+        </InnerCircle>
+      </Wrapper>
+    </ClickableWrapper>
   );
 }
 

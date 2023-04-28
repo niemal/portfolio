@@ -4,12 +4,14 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { QUERIES } from "../constants";
+import ClickableWrapper from "../ClickableWrapper/ClickableWrapper";
 
 const Wrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   gap: 64px;
   align-items: flex-start;
+  z-index: 4;
 
   @media ${QUERIES.tabletAndSmaller} {
     flex-direction: column;
@@ -32,6 +34,11 @@ const ProjectImageContainer = styled.a`
   border-radius: 50%;
   opacity: 0.7;
   transition: all 0.3s ease-in-out;
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
 
   ${hoverSupported(css`
     &:hover {
@@ -171,7 +178,7 @@ const fadeInOut = {
   exit: { opacity: 0, scale: 0.8 },
 };
 
-const Link = styled.a`
+const MyLink = styled.a`
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 3px;
@@ -179,12 +186,31 @@ const Link = styled.a`
   font-family: var(--font-secondary);
   transition: all 0.3s ease-in-out;
   width: max-content;
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
+
   ${hoverSupported(css`
     &:hover {
       color: var(--color-tertiary);
     }
   `)}
 `;
+
+const Link = ({ children, ...props }) => {
+  return (
+    <ClickableWrapper
+      onClick={() => {
+        window.location = `${props.href}`;
+      }}
+      {...props}
+    >
+      <MyLink>{children}</MyLink>
+    </ClickableWrapper>
+  );
+};
 
 const MoreBall = styled.div`
   align-self: flex-end;
@@ -198,6 +224,11 @@ const MoreBall = styled.div`
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   opacity: 0.7;
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
 
   ${hoverSupported(css`
     &:hover {
@@ -278,16 +309,22 @@ function Project({ project, ...props }) {
 
   return (
     <Wrapper ref={topRef} {...animation} {...props}>
-      <ProjectImageContainer
-        ref={imageRef}
+      <ClickableWrapper
         href={project.live}
-        target="_blank"
-        rel="noopener noreferrer"
+        onClick={() => {
+          window.location = `${project.live}`;
+        }}
       >
-        <InsideContainer>
-          <Image src={project.image} alt={`${project.name} image link`} />
-        </InsideContainer>
-      </ProjectImageContainer>
+        <ProjectImageContainer
+          ref={imageRef}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <InsideContainer>
+            <Image src={project.image} alt={`${project.name} image link`} />
+          </InsideContainer>
+        </ProjectImageContainer>
+      </ClickableWrapper>
 
       <TabletTopRow>
         <TabletProjectImageContainer
@@ -334,7 +371,7 @@ function Project({ project, ...props }) {
             <RowValue more={more}>{project.description}</RowValue>
           </motion.div>
         </Row>
-        <MoreBall
+        <ClickableWrapper
           onClick={() => {
             setMore((m) => {
               if (m) {
@@ -347,10 +384,12 @@ function Project({ project, ...props }) {
             });
           }}
         >
-          <MoreDecor>
-            <MoreValue more={more}>&gt;</MoreValue>
-          </MoreDecor>
-        </MoreBall>
+          <MoreBall>
+            <MoreDecor>
+              <MoreValue more={more}>&gt;</MoreValue>
+            </MoreDecor>
+          </MoreBall>
+        </ClickableWrapper>
 
         <Row style={{ alignItems: "center" }}>
           <RowIntro>Languages:</RowIntro>

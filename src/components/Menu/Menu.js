@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { hoverSupported } from "../hoverSupported";
 import useFirstRender from "../useFirstRender";
+import ClickableWrapper from "../ClickableWrapper";
 import MenuDecor from "../MenuDecor";
 import MobileMenu from "../MobileMenu";
 import { QUERIES } from "../constants";
@@ -19,6 +20,7 @@ const Wrapper = styled(motion.div)`
   place-content: center;
   background-color: var(--color-secondary);
   transition: all 0.8s ease-in-out;
+  z-index: 999;
   ${(p) => (p.firstRender ? "visibility: hidden;" : "")}
 
   box-shadow: 1px 1px 5px 0px hsla(57, 77%, 75%, 0.15),
@@ -85,7 +87,7 @@ const MenuWrapper = styled.div`
   }
 `;
 
-const MenuEntry = styled.a`
+const MenuEntryWrapper = styled.a`
   font-family: var(--font-primary);
   font-size: ${22 / 16}rem;
   color: var(--color-secondary);
@@ -99,7 +101,26 @@ const MenuEntry = styled.a`
       color: var(--color-tertiary);
     }
   `)}
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
 `;
+
+const MenuEntry = ({ href, children, ...props }) => {
+  return (
+    <ClickableWrapper
+      href={href}
+      onClick={() => {
+        window.location = `${href}`;
+      }}
+      {...props}
+    >
+      <MenuEntryWrapper>{children}</MenuEntryWrapper>
+    </ClickableWrapper>
+  );
+};
 
 function Menu() {
   const firstRender = useFirstRender();

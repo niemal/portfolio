@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import { hoverSupported } from "../hoverSupported";
 import { QUERIES } from "../constants";
+import ClickableWrapper from "../ClickableWrapper/ClickableWrapper";
 
 const Wrapper = styled.section`
   display: flex;
@@ -32,7 +33,7 @@ const SocialsWrapper = styled.div`
   align-self: flex-end;
 `;
 
-const SocialContainer = styled.a`
+const SocialWrapperContainer = styled.a`
   text-decoration: none;
   cursor: pointer;
   width: 50px;
@@ -48,7 +49,28 @@ const SocialContainer = styled.a`
       opacity: 1;
     }
   `)}
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
 `;
+
+const SocialContainer = ({ href, children, ...props }) => {
+  return (
+    <ClickableWrapper
+      href={href}
+      target={"_blank"}
+      rel="noopener noreferrer"
+      onClick={() => {
+        window.location = `${href}`;
+      }}
+      {...props}
+    >
+      <SocialWrapperContainer>{children}</SocialWrapperContainer>
+    </ClickableWrapper>
+  );
+};
 
 const SocialImage = styled(motion.img)`
   object-fit: cover;
@@ -78,6 +100,11 @@ const Name = styled(motion.a)`
       color: var(--color-tertiary);
     }
   `)}
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
 `;
 
 const PictureContainer = styled(motion.a)`
@@ -96,6 +123,11 @@ const PictureContainer = styled(motion.a)`
   position: relative;
   overflow: hidden;
   border: 8px solid var(--color-primary-fade);
+
+  &:focus {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+  }
 `;
 
 const Image = styled.img`
@@ -216,14 +248,22 @@ function TopSection() {
             animate={textControls}
           >
             Hello! I am{" "}
-            <Name
+            <ClickableWrapper
               href={"https://niemal.dev/"}
-              variants={textVariants}
-              initial="hidden"
-              animate={textControls}
+              target={"_blank"}
+              rel="noopener noreferrer"
+              onClick={() => {
+                window.location = "https://niemal.dev/";
+              }}
             >
-              Nick!
-            </Name>
+              <Name
+                variants={textVariants}
+                initial="hidden"
+                animate={textControls}
+              >
+                Nick!
+              </Name>
+            </ClickableWrapper>
           </Title>
           <SocialsWrapper>
             <SocialContainer
@@ -280,18 +320,28 @@ function TopSection() {
             </SocialContainer>
           </SocialsWrapper>
         </TextIntroWrapper>
-        <PictureContainer
-          ref={imageRef}
+        <ClickableWrapper
           href={"https://github.com/niemal/"}
           target={"_blank"}
           rel="noopener noreferrer"
-          variants={imageVariants}
-          initial="hidden"
-          animate={imageControls}
+          onClick={() => {
+            window.target = "_blank";
+            window.location = "https://github.com/niemal/";
+          }}
         >
-          <Image src={"/portfolio/profile.png"} alt={"profile picture"} />
-          <ImageFade />
-        </PictureContainer>
+          <PictureContainer
+            ref={imageRef}
+            href={"https://github.com/niemal/"}
+            target={"_blank"}
+            rel="noopener noreferrer"
+            variants={imageVariants}
+            initial="hidden"
+            animate={imageControls}
+          >
+            <Image src={"/portfolio/profile.png"} alt={"profile picture"} />
+            <ImageFade />
+          </PictureContainer>
+        </ClickableWrapper>
       </IntroWrapper>
 
       <DescIntro
