@@ -88,7 +88,7 @@ function ScrollFromHero() {
     <ClickableWrapper
       href={"#expertise"}
       onClick={() => {
-        window.location = "/portfolio#expertise";
+        window.location = "#expertise";
       }}
     >
       <Wrapper

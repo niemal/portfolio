@@ -175,10 +175,10 @@ function Menu() {
         <MenuWrapper>
           {!isExclusiveWidth3 ? (
             <>
-              <MenuEntry href={"/portfolio#about"}>1. About</MenuEntry>
-              <MenuEntry href={"/portfolio#expertise"}>2. Expertise</MenuEntry>
-              <MenuEntry href={"/portfolio#skills"}>3. Skills</MenuEntry>
-              <MenuEntry href={"/portfolio#projects"}>4. Projects</MenuEntry>
+              <MenuEntry href={"#about"}>1. About</MenuEntry>
+              <MenuEntry href={"#expertise"}>2. Expertise</MenuEntry>
+              <MenuEntry href={"#skills"}>3. Skills</MenuEntry>
+              <MenuEntry href={"#projects"}>4. Projects</MenuEntry>
             </>
           ) : (
             <MobileMenu />
