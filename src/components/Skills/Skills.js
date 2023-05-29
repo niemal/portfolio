@@ -201,6 +201,19 @@ function Skills() {
         </MySkill>
 
         <MySkill
+          href={"https://en.wikipedia.org/wiki/TypeScript"}
+          offsetX={offsetX}
+          offsetY={offsetY}
+          inView={inView}
+        >
+          <SkillTitle>TypeScript</SkillTitle>
+          <Image
+            src={"/portfolio/typescript.png"}
+            alt={"typescript image icon"}
+          />
+        </MySkill>
+
+        <MySkill
           href={"https://react.dev/"}
           offsetX={offsetX}
           offsetY={offsetY}
@@ -238,6 +251,16 @@ function Skills() {
         >
           <SkillTitle>CSS</SkillTitle>
           <Image src={"/portfolio/css.png"} alt={"css image icon"} />
+        </MySkill>
+
+        <MySkill
+          href={"https://en.wikipedia.org/wiki/MySQL"}
+          offsetX={offsetX}
+          offsetY={offsetY}
+          inView={inView}
+        >
+          <SkillTitle>MySQL</SkillTitle>
+          <Image src={"/portfolio/mysql.png"} alt={"mysql image icon"} />
         </MySkill>
 
         <MySkill
