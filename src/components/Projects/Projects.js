@@ -19,6 +19,16 @@ const Wrapper = styled.section`
 
 const projects = [
   {
+    name: "UnitedGPT",
+    image: "/portfolio/unitedgpt.png",
+    live: "https://unitedgpt.app/",
+    webdesign: "Self-made",
+    code: "https://github.com/niemal/unitedgpt",
+    description:
+      "UnitedGPT is an innovative, real-time collaborative platform designed to enhance the capabilities of Chat GPT by enabling users to share, manage, and interact with GPT outputs in a dynamic and engaging environment. At the core of its architecture, UnitedGPT leverages the robustness of MySQL and the high-performance data handling of Redis to ensure seamless user experiences and efficient data management. Real-time Interaction Interface: It allows users to explore GPT questions with others in real-time, providing inspiration and education. Key features of this platform include: Real-time Interaction Interface: It allows users to explore GPT questions with others in real-time, providing inspiration and education. Live Sharing of Prompts: Users can share their Chat GPT prompts live in a dedicated room. Customizable Context: The platform enables customization of the Chat GPT context, utilizing the output of previous prompts to strengthen the model's focus. Management of Chat GPT Keys: Users can manage and share their Chat GPT keys for use within a room, and also use their own Chat GPT keys within these room. Parallel Prompt Processing: It offers the ability to run multiple prompts in parallel, helping to compress context overflow. Model Settings Configuration: Users have the option to define the Chat GPT model's settings according to their preferences. Organizational Structure: The platform allows for the creation of organizations, enabling friends to create organizational rooms and manage accessibility. Message Pinning for Reference: There's a feature to pin room messages for future reference or use their context for future applications. Folder-Based Prompt Management: Users can start Chat GPT prompts from folders with broadcast and view permissions. Community Sharing: The platform facilitates sharing folders and prompts with a chosen community. Prompt Templates: Users can utilize prompt templates to streamline their interactions.",
+    languages: ["typescript", "react", "nextjs", "html", "css", "mysql"],
+  },
+  {
     name: "city-events",
     image: "/portfolio/city-events.png",
     live: "https://niemal.dev/city-events/",
